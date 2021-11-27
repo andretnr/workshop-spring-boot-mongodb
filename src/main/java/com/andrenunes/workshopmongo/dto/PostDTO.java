@@ -11,7 +11,7 @@ import com.andrenunes.workshopmongo.domain.User;
  * da entidade original.
  * 
  * @author andre
- *
+ * Sem uso
  */
 
 public class PostDTO implements Serializable {
