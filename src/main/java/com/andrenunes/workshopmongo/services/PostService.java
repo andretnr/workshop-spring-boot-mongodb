@@ -22,7 +22,12 @@ public class PostService {
 	}
 
 	//Consulta com query methods do spring
+//	public List<Post> findByTitle(String text) {
+//		return repo.findByTitleContainingIgnoreCase(text);
+//	}
+	
+	//Consulta com query do MongoDB personalizada
 	public List<Post> findByTitle(String text) {
-		return repo.findByTitleContainingIgnoreCase(text);
+		return repo.searchTitle(text);
 	}
 }

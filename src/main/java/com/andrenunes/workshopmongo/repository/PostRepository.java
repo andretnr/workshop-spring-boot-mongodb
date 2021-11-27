@@ -3,6 +3,7 @@ package com.andrenunes.workshopmongo.repository;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.andrenunes.workshopmongo.domain.Post;
@@ -12,4 +13,8 @@ public interface PostRepository extends MongoRepository<Post, String> {
 
 	//Consulta com query methods do spring
 	List<Post> findByTitleContainingIgnoreCase(String text);
+	
+	//Consulta query do MongoDB personalizada
+	@Query("{ 'title': { $regex: ?0, $options: 'i' } }")
+	List<Post> searchTitle(String text);
 }
