@@ -51,4 +51,12 @@ public class UserResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
+	// Metodo de remoção de usuário
+	// anotação pode ser substituida por @PostMapping
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable String id) {
+	    service.remove(id);
+		return ResponseEntity.noContent().build();
+	}
 }

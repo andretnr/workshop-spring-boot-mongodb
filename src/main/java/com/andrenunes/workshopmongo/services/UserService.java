@@ -14,23 +14,28 @@ import com.andrenunes.workshopmongo.services.exception.ObjectNotFoundException;
 @Service
 public class UserService {
 
-	//Atributo usado para acessar o repositorio
+	// Atributo usado para acessar o repositorio
 	@Autowired
 	private UserRepository repo;
-	
-	public List<User> findAll(){
+
+	public List<User> findAll() {
 		return repo.findAll();
 	}
-	
+
 	public User findById(String id) {
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
-	
+
 	public User Insert(User obj) {
 		return repo.insert(obj);
 	}
-	
+
+	public void remove(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
+
 	public User FromDTO(UserDTO objDTO) {
 		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
 	}
